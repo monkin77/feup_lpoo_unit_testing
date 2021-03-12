@@ -25,8 +25,6 @@ public class ListAggregatorTest {
 
     @Test
     public void max() {
-        List<Integer> list = Arrays.asList(1,2,4,2,5);
-
         ListAggregator aggregator = new ListAggregator();
         int max = aggregator.max(list);
 
@@ -35,8 +33,6 @@ public class ListAggregatorTest {
 
     @Test
     public void min() {
-        List<Integer> list = Arrays.asList(1,2,4,2,5);
-
         ListAggregator aggregator = new ListAggregator();
         int min = aggregator.min(list);
 
@@ -45,11 +41,19 @@ public class ListAggregatorTest {
 
     @Test
     public void distinct() {
-        List<Integer> list = Arrays.asList(1,2,4,2,5);
-
         ListAggregator aggregator = new ListAggregator();
         int distinct = aggregator.distinct(list);
 
         Assertions.assertEquals(4, distinct);
+    }
+
+    @Test
+    public void max_bug_7263(){
+        List<Integer> list = Arrays.asList(-1, -4, -5);
+
+        ListAggregator aggregator = new ListAggregator();
+        int max = aggregator.max(list);
+
+        Assertions.assertEquals(-1, max);
     }
 }
